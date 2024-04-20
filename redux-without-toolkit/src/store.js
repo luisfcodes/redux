@@ -1,20 +1,9 @@
-import { createStore } from 'redux'
-import * as t from '@/constants'
+import { createStore, combineReducers } from 'redux'
+import { taskList, taskHistory } from './reducers'
 
-const initialState = {
-  count: 0
-}
-
-function reducer(state = initialState, action) {
-  console.log(action)
-  switch (action.type) {
-    case t.INCREMENT:
-      return { count: state.count + 1 }
-    case t.DECREMENT:
-      return { count: state.count - 1 }
-    default:
-      return state
-  }
-}
+const reducer = combineReducers({
+  tasks: taskList,
+  history: taskHistory
+})
 
 export const store = createStore(reducer)
